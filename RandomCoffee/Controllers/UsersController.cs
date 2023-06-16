@@ -57,7 +57,7 @@ namespace RandomCoffee.Controllers
             return Ok(user);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {
             var user = _context.Users.Find(id);
