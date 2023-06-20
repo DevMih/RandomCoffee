@@ -1,11 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using RandomCoffee.Data;
+using RandomCoffee.Services;
 using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 // Add services to the container.
 
+builder.Services.AddSingleton<SmtpService>();
+builder.Services.AddSingleton<TimerService>();
+builder.Services.AddSingleton<MatchingService>();
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(connectionString);

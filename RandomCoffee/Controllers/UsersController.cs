@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using RandomCoffee.Data;
 using RandomCoffee.Entities;
+using RandomCoffee.Services;
 
 namespace RandomCoffee.Controllers
 {
@@ -10,9 +11,14 @@ namespace RandomCoffee.Controllers
     public class UsersController : ControllerBase
     {
         private readonly DataContext _context;
-        public UsersController(DataContext context)
+        private readonly SmtpService _smptService;
+        private readonly TimerService _timerService;
+
+        public UsersController(DataContext context, SmtpService smptService, TimerService timerService)
         {
             _context = context;
+            _smptService = smptService;
+            _timerService = timerService;
         }
 
         [HttpGet]
@@ -24,7 +30,14 @@ namespace RandomCoffee.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUser(int id)
         {
-            return await _context.Users.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
         }
         
         [HttpPost]
