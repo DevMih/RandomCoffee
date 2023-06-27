@@ -1,0 +1,42 @@
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <div class="card">
+            <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.username}}"
+                class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>Full Name:</strong>
+                    <p>{{member.fullName}}</p>
+                </div>
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{member.city}}</p>
+                </div>
+                <div>
+                    <strong>Occupation:</strong>
+                    <p>{{member.occupation || "Unemployed"}}</p>
+                </div>
+                <div>
+                    <strong>Email:</strong>
+                    <p>{{member.email}}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button (click)="openMessageModal()" class="btn btn-success">Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8">
+        <tabset class="member-tabset">
+            <tab heading="About {{member.username}}">
+                <h4>Description</h4>
+                <p>{{member.introduction || "User doesn't have a description"}}</p>
+                <h4>Interests</h4>
+                <p>{{member.interests || "User doesn't have interests"}}</p>
+            </tab>
+        </tabset>
+    </div>
+</div>

@@ -30,11 +30,11 @@ namespace RandomCoffee.Services
             {  
                 if (i == matches.Count - 1)
                 {
-                    _smptService.SendEmail(matches[i], null);
+                    _smptService.SendMatches(matches[i], null);
                     break;
                 }
-                _smptService.SendEmail(matches[i], matches[i + 1]);
-                _smptService.SendEmail(matches[i + 1], matches[i]);
+                _smptService.SendMatches(matches[i], matches[i + 1]);
+                _smptService.SendMatches(matches[i + 1], matches[i]);
                 i++;
             }
         }

@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RandomCoffee.Services;
 
 namespace RandomCoffee.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     public class EmailController : ControllerBase
     {
         private readonly TimerService _timerService;
@@ -14,8 +16,8 @@ namespace RandomCoffee.Controllers
             _timerService = timerService;
         }
 
-        [HttpGet("matches")]
-        public Task GetMatches()
+        [HttpGet("timer/start")]
+        public Task StartTimer()
         {
             return _timerService.StartAsync(CancellationToken.None);
         }
@@ -26,6 +28,12 @@ namespace RandomCoffee.Controllers
             _timerService.UpdateTimer(startTime, interval);
             
             return Ok();
+        }
+
+        [HttpGet("timer/stop")]
+        public Task StopTimer()
+        {
+            return _timerService.StopAsync(CancellationToken.None);
         }
     }
 }

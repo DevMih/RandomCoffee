@@ -1,9 +1,10 @@
 ﻿using RandomCoffee.Data;
 using RandomCoffee.Entities;
+using RandomCoffee.Interfaces;
 
 namespace RandomCoffee.Services
 {
-    public class MatchingService
+    public class MatchingService : IMatchingService
     {
         private readonly IServiceProvider _serviceProvider;
 

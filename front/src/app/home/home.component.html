@@ -1,0 +1,38 @@
+<div *ngIf="!(accountService.currentUser$ | async)" class="container mt-5">
+    <div *ngIf="!registerMode" style="text-align: center;">
+        <h1>Random Coffee</h1>
+        <p class="lead">Come on in to find new friends... all you need to do is sign up</p>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <form  #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+                        <input 
+                            name="username"
+                            [(ngModel)]="model.username"
+                            class="form-control" 
+                            type="text" 
+                            placeholder="Username">
+                        <input 
+                            name="password"
+                            [(ngModel)]="model.password"
+                            class="form-control mt-2" 
+                            type="password" 
+                            placeholder="Password">
+                        <button class="btn btn-success mt-2 mb-4" type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button (click)="registerToggle()" class="btn btn-primary btn-lg">Register</button>
+        </div>
+    </div>
+    
+    <div *ngIf="registerMode" class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+            </div>
+        </div>
+    </div>
+</div>

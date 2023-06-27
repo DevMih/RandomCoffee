@@ -1,0 +1,19 @@
+﻿version: "3.4"
+
+services:
+    db:
+        image: "mcr.microsoft.com/mssql/server:2019-latest"
+        ports:
+          - "1433:1433"
+        environment:
+            SA_PASSWORD: "S3cur3P@ssW0rd!"
+            ACCEPT_EULA: "Y"
+    api:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        ports:
+          - "7100:443"
+          - "5100:80"
+        depends_on:
+          - db

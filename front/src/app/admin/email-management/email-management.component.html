@@ -1,0 +1,15 @@
+<div class="mt-3">
+    <button (click)="startTimer()" class="btn btn-success">Start Mailing</button>
+</div>
+<div class="mt-3">
+    <form #timerForm="ngForm">
+        <label for="interval">Interval (seconds)</label>
+        <br>
+        <input [(ngModel)]="interval" type="number" name="interval" id="interval" placeholder="120">
+        <br>
+        <button (click)="updateTimer(interval)" class="btn btn-warning mt-2" type="submit">Update Mailing</button>
+    </form>
+</div>
+<div class="mt-3">
+    <button (click)="stopTimer()" class="btn btn-danger">Stop Mailing</button>
+</div>

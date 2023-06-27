@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Send message to {{member.username}}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form #messageForm="ngForm" id="messageForm">
+        <label for="subject"><h6>Subject: </h6></label>
+        <input [(ngModel)]="message.subject" type="text" name="subject" class="form-control" />
+        <textarea class="form-control mt-2" [(ngModel)]="message.body" name="body" rows="6"></textarea>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+    <button type="button" class="btn btn-success" (click)="sendMessage()">Send</button>
+</div>

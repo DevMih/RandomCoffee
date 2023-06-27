@@ -1,3 +1,4 @@
+<!----
 <div class="container mb-3">
   <form #createForm="ngForm" (ngSubmit)="createUser()" autocomplete="off" class="text-center">
     <div class="form-group">
@@ -33,4 +34,11 @@
       <td><button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button></td>
     </tr>
   </table>
+</div>
+-->
+
+<app-nav></app-nav>
+
+<div class="container" style="margin-top: 100px">
+  <router-outlet></router-outlet>
 </div>
